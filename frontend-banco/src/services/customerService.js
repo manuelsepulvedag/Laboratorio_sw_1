@@ -1,5 +1,4 @@
-import { api, delay, USE_MOCKS } from "./api";
-import { mockDb } from "./mockData";
+import { api } from "./api";
 
 /**
  * Servicio de clientes.
@@ -11,10 +10,6 @@ import { mockDb } from "./mockData";
 
 /** @returns {Promise<Customer[]>} */
 export async function getCustomers() {
-  if (USE_MOCKS) {
-    await delay();
-    return mockDb.getCustomers();
-  }
   const { data } = await api.get("/customers");
   return data;
 }
@@ -24,10 +19,6 @@ export async function getCustomers() {
  * @returns {Promise<Customer>}
  */
 export async function createCustomer(customer) {
-  if (USE_MOCKS) {
-    await delay();
-    return mockDb.addCustomer(customer);
-  }
   const { data } = await api.post("/customers", customer);
   return data;
 }
@@ -38,10 +29,6 @@ export async function createCustomer(customer) {
  * @returns {Promise<Customer>}
  */
 export async function updateCustomer(id, patch) {
-  if (USE_MOCKS) {
-    await delay();
-    return mockDb.updateCustomer(id, patch);
-  }
   const { data } = await api.put(`/customers/${id}`, patch);
   return data;
 }
@@ -51,10 +38,5 @@ export async function updateCustomer(id, patch) {
  * @returns {Promise<void>}
  */
 export async function deleteCustomer(id) {
-  if (USE_MOCKS) {
-    await delay();
-    mockDb.deleteCustomer(id);
-    return;
-  }
   await api.delete(`/customers/${id}`);
 }
