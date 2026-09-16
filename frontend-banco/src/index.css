@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  @apply bg-white text-slate-900;
+}
+
+/* Focus visible consistente y accesible, en azul de marca */
+:focus-visible {
+  outline: 2px solid theme("colors.brand.600");
+  outline-offset: 2px;
+}
