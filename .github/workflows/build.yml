@@ -24,3 +24,6 @@ jobs:
           dockerfile: lab12026p/Dockerfile
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+          
+      - name: Trigger Render Deployment
+        run: curl -X GET "${{ secrets.RENDER_DEPLOY_HOOK }}"
